@@ -5,7 +5,6 @@
  */
 package clusters;
 import java.util.ArrayList;
-import java.util.List;
 /**
  *
  * @author mcv26
