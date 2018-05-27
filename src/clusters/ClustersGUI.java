@@ -5,6 +5,9 @@
  */
 package clusters;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author mcv26
@@ -14,6 +17,9 @@ public class ClustersGUI extends javax.swing.JFrame {
     /**
      * Creates new form ClustersGUI
      */
+    
+    private ArrayList<Integer[]> NPoints;
+    
     public ClustersGUI() {
         initComponents();
     }
@@ -36,6 +42,7 @@ public class ClustersGUI extends javax.swing.JFrame {
         textValorKRecomendado = new javax.swing.JTextField();
         ValidateButton = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
+        Generar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Clustering");
@@ -104,6 +111,14 @@ public class ClustersGUI extends javax.swing.JFrame {
             .addGap(0, 366, Short.MAX_VALUE)
         );
 
+        Generar.setFont(new java.awt.Font("Trajan Pro", 3, 18)); // NOI18N
+        Generar.setText("Generar Puntos N");
+        Generar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                GenerarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -113,25 +128,29 @@ public class ClustersGUI extends javax.swing.JFrame {
                 .addComponent(labelValorK)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(textValorK, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(58, 58, 58)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(labelValorN)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(textValorN, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
+                .addGap(41, 41, 41)
                 .addComponent(labelKRecomendado)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(textValorKRecomendado, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addGap(75, 75, 75)
-                .addComponent(RunButton)
-                .addGap(113, 113, 113)
-                .addComponent(ValidateButton)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(Generar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                        .addComponent(RunButton)
+                        .addGap(39, 39, 39)
+                        .addComponent(ValidateButton)
+                        .addGap(29, 29, 29))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -149,7 +168,8 @@ public class ClustersGUI extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ValidateButton)
-                    .addComponent(RunButton, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE))
+                    .addComponent(RunButton, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+                    .addComponent(Generar))
                 .addGap(10, 10, 10))
         );
 
@@ -157,13 +177,28 @@ public class ClustersGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void RunButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RunButtonActionPerformed
-        // TODO add your handling code here:
+        int valK = Integer.parseInt(textValorK.getText());
+        
     }//GEN-LAST:event_RunButtonActionPerformed
 
     private void ValidateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ValidateButtonActionPerformed
-        // TODO add your handling code here:
+        
+        int valK = Integer.parseInt(textValorK.getText());
     }//GEN-LAST:event_ValidateButtonActionPerformed
 
+    private void GenerarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GenerarActionPerformed
+        int valN = Integer.parseInt(textValorN.getText());
+        GenerarNPoints(valN);
+    }//GEN-LAST:event_GenerarActionPerformed
+
+    void GenerarNPoints(int valN){
+        NPoints = new ArrayList<>();
+        for(int i = 0; i<valN; i++){
+           Integer[] point = new Integer[2];
+           
+        }
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -200,6 +235,7 @@ public class ClustersGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Generar;
     private javax.swing.JButton RunButton;
     private javax.swing.JButton ValidateButton;
     private javax.swing.JPanel jPanel1;
