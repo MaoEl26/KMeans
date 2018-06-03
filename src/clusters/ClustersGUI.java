@@ -5,11 +5,14 @@
  */
 package clusters;
 
+import java.awt.BorderLayout;
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Random;
-//import java.util.List;
 import javax.swing.JOptionPane;
 import java.util.concurrent.ThreadLocalRandom;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 
 /**
@@ -23,12 +26,18 @@ public class ClustersGUI extends javax.swing.JFrame {
      */
     
     private static ArrayList<Points> NPoints;
-    Random Rand = new Random();
-    ResultK resultado;
+    private Random Rand = new Random();
+    private ResultK resultado;
+    private int valK,valN,valKRecomendado;
+    private ResultK result;
+    private ArrayList<JPanel> panels;
+    private ArrayList<JLabel> labels;
+    
     
     public ClustersGUI() {
         initComponents();
         disableButtons();
+        storePanels();
     }
 
     /**
@@ -48,8 +57,19 @@ public class ClustersGUI extends javax.swing.JFrame {
         labelKRecomendado = new javax.swing.JLabel();
         textValorKRecomendado = new javax.swing.JTextField();
         ValidateButton = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
+        iteracion2 = new javax.swing.JPanel();
+        labelIt2 = new javax.swing.JLabel();
         Generar = new javax.swing.JButton();
+        iteracion3 = new javax.swing.JPanel();
+        labelIt3 = new javax.swing.JLabel();
+        iteracion6 = new javax.swing.JPanel();
+        labelIt6 = new javax.swing.JLabel();
+        iteracion1 = new javax.swing.JPanel();
+        labelIt1 = new javax.swing.JLabel();
+        iteracion4 = new javax.swing.JPanel();
+        labelIt4 = new javax.swing.JLabel();
+        iteracion5 = new javax.swing.JPanel();
+        labelIt5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Clustering");
@@ -106,17 +126,24 @@ public class ClustersGUI extends javax.swing.JFrame {
             }
         });
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        iteracion2.setBackground(new java.awt.Color(255, 255, 255));
+        iteracion2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED, java.awt.Color.darkGray, java.awt.Color.darkGray, java.awt.Color.gray, java.awt.Color.gray));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+        javax.swing.GroupLayout iteracion2Layout = new javax.swing.GroupLayout(iteracion2);
+        iteracion2.setLayout(iteracion2Layout);
+        iteracion2Layout.setHorizontalGroup(
+            iteracion2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, iteracion2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(labelIt2, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 366, Short.MAX_VALUE)
+        iteracion2Layout.setVerticalGroup(
+            iteracion2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(iteracion2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(labelIt2, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         Generar.setFont(new java.awt.Font("Trajan Pro", 3, 18)); // NOI18N
@@ -126,6 +153,106 @@ public class ClustersGUI extends javax.swing.JFrame {
                 GenerarActionPerformed(evt);
             }
         });
+
+        iteracion3.setBackground(new java.awt.Color(255, 255, 255));
+        iteracion3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED, java.awt.Color.darkGray, java.awt.Color.darkGray, java.awt.Color.gray, java.awt.Color.gray));
+
+        javax.swing.GroupLayout iteracion3Layout = new javax.swing.GroupLayout(iteracion3);
+        iteracion3.setLayout(iteracion3Layout);
+        iteracion3Layout.setHorizontalGroup(
+            iteracion3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, iteracion3Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(labelIt3, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        iteracion3Layout.setVerticalGroup(
+            iteracion3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(iteracion3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(labelIt3, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        iteracion6.setBackground(new java.awt.Color(255, 255, 255));
+        iteracion6.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED, java.awt.Color.darkGray, java.awt.Color.darkGray, java.awt.Color.gray, java.awt.Color.gray));
+
+        javax.swing.GroupLayout iteracion6Layout = new javax.swing.GroupLayout(iteracion6);
+        iteracion6.setLayout(iteracion6Layout);
+        iteracion6Layout.setHorizontalGroup(
+            iteracion6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, iteracion6Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(labelIt6, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        iteracion6Layout.setVerticalGroup(
+            iteracion6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(iteracion6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(labelIt6, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(204, Short.MAX_VALUE))
+        );
+
+        iteracion1.setBackground(new java.awt.Color(255, 255, 255));
+        iteracion1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED, java.awt.Color.darkGray, java.awt.Color.darkGray, java.awt.Color.gray, java.awt.Color.gray));
+
+        javax.swing.GroupLayout iteracion1Layout = new javax.swing.GroupLayout(iteracion1);
+        iteracion1.setLayout(iteracion1Layout);
+        iteracion1Layout.setHorizontalGroup(
+            iteracion1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, iteracion1Layout.createSequentialGroup()
+                .addContainerGap(188, Short.MAX_VALUE)
+                .addComponent(labelIt1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        iteracion1Layout.setVerticalGroup(
+            iteracion1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(iteracion1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(labelIt1, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(208, Short.MAX_VALUE))
+        );
+
+        iteracion4.setBackground(new java.awt.Color(255, 255, 255));
+        iteracion4.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED, java.awt.Color.darkGray, java.awt.Color.darkGray, java.awt.Color.gray, java.awt.Color.gray));
+
+        javax.swing.GroupLayout iteracion4Layout = new javax.swing.GroupLayout(iteracion4);
+        iteracion4.setLayout(iteracion4Layout);
+        iteracion4Layout.setHorizontalGroup(
+            iteracion4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, iteracion4Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(labelIt4, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        iteracion4Layout.setVerticalGroup(
+            iteracion4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(iteracion4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(labelIt4, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        iteracion5.setBackground(new java.awt.Color(255, 255, 255));
+        iteracion5.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED, java.awt.Color.darkGray, java.awt.Color.darkGray, java.awt.Color.gray, java.awt.Color.gray));
+
+        javax.swing.GroupLayout iteracion5Layout = new javax.swing.GroupLayout(iteracion5);
+        iteracion5.setLayout(iteracion5Layout);
+        iteracion5Layout.setHorizontalGroup(
+            iteracion5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, iteracion5Layout.createSequentialGroup()
+                .addContainerGap(191, Short.MAX_VALUE)
+                .addComponent(labelIt5, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        iteracion5Layout.setVerticalGroup(
+            iteracion5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(iteracion5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(labelIt5, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -140,25 +267,33 @@ public class ClustersGUI extends javax.swing.JFrame {
                 .addComponent(labelValorN)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(textValorN, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(82, 82, 82)
+                .addGap(120, 120, 120)
                 .addComponent(labelKRecomendado)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(textValorKRecomendado, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(iteracion1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(iteracion4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(iteracion5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(iteracion2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(Generar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
-                        .addComponent(RunButton)
-                        .addGap(39, 39, 39)
-                        .addComponent(ValidateButton)
-                        .addGap(29, 29, 29))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())))
+                    .addComponent(iteracion6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(iteracion3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(Generar)
+                .addGap(91, 91, 91)
+                .addComponent(RunButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
+                .addComponent(ValidateButton)
+                .addGap(37, 37, 37))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -172,24 +307,36 @@ public class ClustersGUI extends javax.swing.JFrame {
                     .addComponent(labelKRecomendado, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(textValorKRecomendado, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(iteracion1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(iteracion3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(iteracion2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(iteracion4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(iteracion5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(iteracion6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ValidateButton)
-                    .addComponent(RunButton, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+                    .addComponent(RunButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(Generar))
-                .addGap(10, 10, 10))
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void RunButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RunButtonActionPerformed
+        clearPanels();
         try{
-        int valK = Integer.parseInt(textValorK.getText());
+        valK = Integer.parseInt(textValorK.getText());
         if (valK <= 5){
             K_means_Algorithm algoritmo= new K_means_Algorithm();
-            ResultK result = algoritmo.calcular(NPoints, valK);
+            for(int k = 1;k <= valK;k++){
+            result = algoritmo.calcular(NPoints, valK);
+            DrawClusters(k);
+            }
         }else{
             JOptionPane.showMessageDialog(null,"Error de Valor N\nEl número debe de ser "
                     + "menor o igual a 5","Error",JOptionPane.WARNING_MESSAGE);
@@ -209,7 +356,7 @@ public class ClustersGUI extends javax.swing.JFrame {
 
     private void GenerarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GenerarActionPerformed
        try{
-        int valN = Integer.parseInt(textValorN.getText());
+        valN = Integer.parseInt(textValorN.getText());
         if (valN >= 5){
             generarNPoints(valN);
             enableButtons();
@@ -234,20 +381,55 @@ public class ClustersGUI extends javax.swing.JFrame {
         ArrayList<String[]> auxPoint = new ArrayList<>();
         for(int i = 0; i<valN; i++){
            String[] point = new String[2];
-           //ArrayList<Float> point = new ArrayList<>();
-           
-           //point.add(-5+Rand.nextInt(5));
-           //point.add(-5+Rand.nextInt(5));
            point[0]=(Integer.toString(
                    ThreadLocalRandom.current().nextInt(minimum, maximum + 1)));
            point[1]=(Integer.toString(
                    ThreadLocalRandom.current().nextInt(minimum, maximum + 1)));
-           //point.add(Rand.nextInt());
            auxPoint.add(point);
         }
         for(int i= 0;i<valN;i++){
             Points p = new Points(auxPoint.get(i));
             NPoints.add(p);
+        }
+    }
+    
+    private void DrawClusters(int k){
+        JPanel iteracion = panels.get(k-1);
+        JLabel itLabel = labels.get(k-1);
+        itLabel.setText("It = "+k);
+        iteracion.add(itLabel);
+        iteracion.validate();
+        iteracion.setLayout(new java.awt.BorderLayout());
+        for(Clusters cluster : result.getClusters() ){
+            Punto punto = new Punto();
+            punto.setColor(Color.red);
+            punto.setEscala(15);
+            punto.setCoords(cluster.getCentroide().getDimension(0),cluster.getCentroide().getDimension(1));
+            iteracion.add(punto, BorderLayout.CENTER);
+            iteracion.validate();
+            iteracion.repaint();
+            
+            Float r = Rand.nextFloat();
+            Float g = Rand.nextFloat();
+            Float b = Rand.nextFloat();
+            Color randColor = new Color(r,g,b);
+            for(Points coords : cluster.getPuntos()){
+                Punto puntoCluster = new Punto();
+                puntoCluster.setColor(randColor);
+                puntoCluster.setEscala(10);
+                puntoCluster.setCoords(coords.getDimension(0),coords.getDimension(1));
+                iteracion.add(puntoCluster,BorderLayout.CENTER);
+                iteracion.validate();
+            }
+            iteracion.repaint();
+        }
+        
+    }
+    
+    private void clearPanels(){
+        for(JPanel panel : panels){
+            panel.removeAll();
+            panel.repaint();
         }
     }
        
@@ -256,9 +438,26 @@ public class ClustersGUI extends javax.swing.JFrame {
         ValidateButton.setEnabled(false);
     }
     
-    void enableButtons(){
+    private void enableButtons(){
         RunButton.setEnabled(true);
         ValidateButton.setEnabled(true);
+    }
+    
+    private void storePanels(){
+        panels = new ArrayList();
+        panels.add(iteracion1);
+        panels.add(iteracion2);
+        panels.add(iteracion3);
+        panels.add(iteracion4);
+        panels.add(iteracion5);
+        panels.add(iteracion6);
+        labels = new ArrayList();
+        labels.add(labelIt1);
+        labels.add(labelIt2);
+        labels.add(labelIt3);
+        labels.add(labelIt4);
+        labels.add(labelIt5);
+        labels.add(labelIt6);
     }
     
     /**
@@ -301,7 +500,18 @@ public class ClustersGUI extends javax.swing.JFrame {
     private javax.swing.JButton Generar;
     private javax.swing.JButton RunButton;
     private javax.swing.JButton ValidateButton;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel iteracion1;
+    private javax.swing.JPanel iteracion2;
+    private javax.swing.JPanel iteracion3;
+    private javax.swing.JPanel iteracion4;
+    private javax.swing.JPanel iteracion5;
+    private javax.swing.JPanel iteracion6;
+    private javax.swing.JLabel labelIt1;
+    private javax.swing.JLabel labelIt2;
+    private javax.swing.JLabel labelIt3;
+    private javax.swing.JLabel labelIt4;
+    private javax.swing.JLabel labelIt5;
+    private javax.swing.JLabel labelIt6;
     private javax.swing.JLabel labelKRecomendado;
     private javax.swing.JLabel labelValorK;
     private javax.swing.JLabel labelValorN;
