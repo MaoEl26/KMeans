@@ -33,6 +33,8 @@ public class Points {
         return info.length;
     }
     
+    
+    
     public Double distanciaEuclideana(Points destino){
         Double d = 0d;
         for (int i = 0; i < info.length; i++){
