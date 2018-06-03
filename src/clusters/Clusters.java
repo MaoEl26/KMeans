@@ -12,7 +12,7 @@ import java.util.ArrayList;
  * @author mcv26
  */
 public class Clusters {
-    private ArrayList<Points> puntos = new ArrayList<Points>();
+    private ArrayList<Points> puntos = new ArrayList<>();
     private Points centroide;
     private boolean termino = false;
     

@@ -6,22 +6,23 @@
 package clusters;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
  * @author mcv26
  */
 public class ResultK {
-    private ArrayList<Clusters> clusters = new ArrayList<>();
+    private List<Clusters> clusters = new ArrayList<>();
     private final Double ObjFuncVal;
 
-    public ResultK(ArrayList<Clusters> clusters, Double ObjFuncVal) {
+    public ResultK(List<Clusters> clusters, Double ObjFuncVal) {
 	super();
 	this.ObjFuncVal = ObjFuncVal;
 	this.clusters = clusters;
     }
 
-    public ArrayList<Clusters> getClusters() {
+    public List<Clusters> getClusters() {
 	return clusters;
     }
 

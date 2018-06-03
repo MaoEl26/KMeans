@@ -6,7 +6,11 @@
 package clusters;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Random;
+//import java.util.List;
+import javax.swing.JOptionPane;
+import java.util.concurrent.ThreadLocalRandom;
+
 
 /**
  *
@@ -18,10 +22,13 @@ public class ClustersGUI extends javax.swing.JFrame {
      * Creates new form ClustersGUI
      */
     
-    private ArrayList<Integer[]> NPoints;
+    private static ArrayList<Points> NPoints;
+    Random Rand = new Random();
+    ResultK resultado;
     
     public ClustersGUI() {
         initComponents();
+        disableButtons();
     }
 
     /**
@@ -84,6 +91,7 @@ public class ClustersGUI extends javax.swing.JFrame {
         labelKRecomendado.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
         labelKRecomendado.setText("Valor k Recomendado =");
 
+        textValorKRecomendado.setEditable(false);
         textValorKRecomendado.setBackground(new java.awt.Color(0, 204, 204));
         textValorKRecomendado.setFont(new java.awt.Font("MS UI Gothic", 0, 12)); // NOI18N
         textValorKRecomendado.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 0, 153), 2, true));
@@ -132,7 +140,7 @@ public class ClustersGUI extends javax.swing.JFrame {
                 .addComponent(labelValorN)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(textValorN, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(41, 41, 41)
+                .addGap(82, 82, 82)
                 .addComponent(labelKRecomendado)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(textValorKRecomendado, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -177,26 +185,80 @@ public class ClustersGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void RunButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RunButtonActionPerformed
+        try{
         int valK = Integer.parseInt(textValorK.getText());
+        if (valK <= 5){
+            K_means_Algorithm algoritmo= new K_means_Algorithm();
+            ResultK result = algoritmo.calcular(NPoints, valK);
+        }else{
+            JOptionPane.showMessageDialog(null,"Error de Valor N\nEl número debe de ser "
+                    + "menor o igual a 5","Error",JOptionPane.WARNING_MESSAGE);
+            disableButtons();
+        }}catch(Exception e){
+                JOptionPane.showMessageDialog(null,"Error de Tipo o Casilla en blanco"
+                        + " \nSolo valores enteros son permitidos","Error",JOptionPane.ERROR_MESSAGE);
+                disableButtons();
+                }
+        
         
     }//GEN-LAST:event_RunButtonActionPerformed
 
     private void ValidateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ValidateButtonActionPerformed
         
-        int valK = Integer.parseInt(textValorK.getText());
     }//GEN-LAST:event_ValidateButtonActionPerformed
 
     private void GenerarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GenerarActionPerformed
+       try{
         int valN = Integer.parseInt(textValorN.getText());
-        GenerarNPoints(valN);
+        if (valN >= 5){
+            generarNPoints(valN);
+            enableButtons();
+        }else{
+            JOptionPane.showMessageDialog(null,"Error de Valor N\nEl número debe de ser "
+                    + "mayor o igual a 5","Error",JOptionPane.WARNING_MESSAGE);
+            disableButtons();
+        }
+        }catch(Exception e){
+                JOptionPane.showMessageDialog(null,"Error de Tipo o Casilla en blanco"
+                        + " \nSolo valores enteros son permitidos","Error",JOptionPane.ERROR_MESSAGE);
+                disableButtons();
+                }
+                
     }//GEN-LAST:event_GenerarActionPerformed
 
-    void GenerarNPoints(int valN){
+    private void generarNPoints(int valN){
+        int minimum = -5;
+        int maximum = 5;
+        
         NPoints = new ArrayList<>();
+        ArrayList<String[]> auxPoint = new ArrayList<>();
         for(int i = 0; i<valN; i++){
-           Integer[] point = new Integer[2];
+           String[] point = new String[2];
+           //ArrayList<Float> point = new ArrayList<>();
            
+           //point.add(-5+Rand.nextInt(5));
+           //point.add(-5+Rand.nextInt(5));
+           point[0]=(Integer.toString(
+                   ThreadLocalRandom.current().nextInt(minimum, maximum + 1)));
+           point[1]=(Integer.toString(
+                   ThreadLocalRandom.current().nextInt(minimum, maximum + 1)));
+           //point.add(Rand.nextInt());
+           auxPoint.add(point);
         }
+        for(int i= 0;i<valN;i++){
+            Points p = new Points(auxPoint.get(i));
+            NPoints.add(p);
+        }
+    }
+       
+    private void disableButtons(){
+        RunButton.setEnabled(false);
+        ValidateButton.setEnabled(false);
+    }
+    
+    void enableButtons(){
+        RunButton.setEnabled(true);
+        ValidateButton.setEnabled(true);
     }
     
     /**
@@ -230,6 +292,7 @@ public class ClustersGUI extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new ClustersGUI().setVisible(true);
+                
             }
         });
     }

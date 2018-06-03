@@ -43,7 +43,7 @@
               <Component id="labelValorN" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="textValorN" min="-2" pref="54" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="82" max="-2" attributes="0"/>
               <Component id="labelKRecomendado" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="textValorKRecomendado" min="-2" pref="54" max="-2" attributes="0"/>
@@ -186,6 +186,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="textValorKRecomendado">
       <Properties>
+        <Property name="editable" type="boolean" value="false"/>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="cc" green="cc" red="0" type="rgb"/>
         </Property>

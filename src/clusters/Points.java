@@ -41,10 +41,13 @@ public class Points {
         return Math.sqrt(d);
     }
     
-    public boolean equalPoints(Object obj){
+    @Override
+    public boolean equals(Object obj){
         Points other = (Points) obj;
         for(int i = 0; i < info.length; i++){
-            if (info[i] != other.getDimension(i)){return false;}
+            if (info[i] != other.getDimension(i)) {
+		return false;
+	    }
         }return true;
     }
     

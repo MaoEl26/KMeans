@@ -7,6 +7,7 @@ package clusters;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -14,8 +15,8 @@ import java.util.Random;
  * @author mcv26
  */
 public class K_means_Algorithm {
-    public ResultK calcular(ArrayList<Points> points, int k){
-       ArrayList<Clusters> clusters = centroides(points,k);
+    public ResultK calcular(List<Points> points, int k){
+       List<Clusters> clusters = centroides(points,k);
        
        while (!finalizo(clusters)) {
 	    prepararClusters(clusters);
@@ -28,7 +29,7 @@ public class K_means_Algorithm {
 	return new ResultK(clusters, objFunc);
     }
     
-    private void recalcularCentroides(ArrayList<Clusters> clusters) {
+    private void recalcularCentroides(List<Clusters> clusters) {
 	for (Clusters c : clusters) {
 	    if (c.getPuntos().isEmpty()) {
 		c.setTermino(true);
@@ -53,51 +54,54 @@ public class K_means_Algorithm {
 	}
     }
 
-    private void asignarPuntos(ArrayList<Points> puntos, ArrayList<Clusters> clusters) {
-        puntos.forEach((punto) -> {
-            Clusters masCercano = clusters.get(0);
-            Double distanciaMinima = Double.MAX_VALUE;
-            for (Clusters cluster : clusters) {
-                Double distancia = punto.distanciaEuclideana(cluster
-                        .getCentroide());
-                if (distanciaMinima > distancia) {
-                    distanciaMinima = distancia;
-                    masCercano = cluster;
-                }
-            }
-            masCercano.getPuntos().add(punto);
-        });
+    private void asignarPuntos(List<Points> puntos, List<Clusters> clusters) {
+        for (Points punto : puntos) {
+	    Clusters masCercano = clusters.get(0);
+	    Double distanciaMinima = Double.MAX_VALUE;
+	    for (Clusters cluster : clusters) {
+		Double distancia = punto.distanciaEuclideana(cluster
+			.getCentroide());
+		if (distanciaMinima > distancia) {
+		    distanciaMinima = distancia;
+		    masCercano = cluster;
+		}
+	    }
+	    masCercano.getPuntos().add(punto);
+	}
     }
 
-    private void prepararClusters(ArrayList<Clusters> clusters) {
-        clusters.forEach((c) -> {
-            c.limpiarPuntos();
-        });
+    private void prepararClusters(List<Clusters> clusters) {
+        for (Clusters c : clusters) {
+	    c.limpiarPuntos();
+	}
     }
 
-    private Double FuncionObjetivo(ArrayList<Clusters> clusters) {
+    private Double FuncionObjetivo(List<Clusters> clusters) {
 	Double ofv = 0d;
 
 	for (Clusters cluster : clusters) {
-            ofv = cluster.getPuntos().stream().map((punto) -> punto.distanciaEuclideana(cluster.getCentroide())).
-                    reduce(ofv, (accumulator, _item) -> accumulator + _item);
+            for (Points punto : cluster.getPuntos()) {
+		ofv += punto.distanciaEuclideana(cluster.getCentroide());
+	    }
 	}
 
 	return ofv;
     }
 
-    private boolean finalizo(ArrayList<Clusters> clusters) {
-        if (!clusters.stream().noneMatch((cluster) -> (!cluster.isTermino()))) {
-            return false;
-        }
+    private boolean finalizo(List<Clusters> clusters) {
+        for (Clusters cluster : clusters) {
+	    if (!cluster.isTermino()) {
+		return false;
+	    }
+	}
 	return true;
     }
     
-    private ArrayList<Clusters> centroides(ArrayList<Points> puntos, Integer k) {
-	ArrayList<Clusters> centroides = new ArrayList<>();
+    private List<Clusters> centroides(List<Points> puntos, Integer k) {
+	List<Clusters> centroides = new ArrayList<>();
 
-	ArrayList<Float> maximos = new ArrayList<>();
-	ArrayList<Float> minimos = new ArrayList<>();
+	List<Float> maximos = new ArrayList<>();
+	List<Float> minimos = new ArrayList<>();
 	// me fijo máximo y mínimo de cada dimensión
 
 	for (int i = 0; i < puntos.get(0).getGrado(); i++) {
