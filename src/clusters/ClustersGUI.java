@@ -181,10 +181,10 @@ public class ClustersGUI extends javax.swing.JFrame {
         iteracion6.setLayout(iteracion6Layout);
         iteracion6Layout.setHorizontalGroup(
             iteracion6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, iteracion6Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(labelIt6, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .addGroup(iteracion6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(labelIt6, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         iteracion6Layout.setVerticalGroup(
             iteracion6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -360,6 +360,8 @@ public class ClustersGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_RunButtonActionPerformed
 
     private void ValidateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ValidateButtonActionPerformed
+        iteracion6.removeAll();
+        iteracion6.repaint();
         ArrayList<ArrayList<Double>> DB = new ArrayList<>();
         Double valorAuxiliar;
         for(int i = 2; i<=5;i++){
@@ -447,10 +449,11 @@ public class ClustersGUI extends javax.swing.JFrame {
         }
         valKRecomendado = auxK.intValue();
         textValorKRecomendado.setText(Integer.toString(valKRecomendado));
+        result = null;
         K_means_Algorithm algoritmo= new K_means_Algorithm();
             for(int k = 1;k <= valK;k++){
             result = algoritmo.calcular(NPoints, valKRecomendado);
-            }
+        }
         DrawClusters(6);
     }//GEN-LAST:event_ValidateButtonActionPerformed
 
@@ -496,7 +499,7 @@ public class ClustersGUI extends javax.swing.JFrame {
     private void DrawClusters(int k){
         JPanel iteracion = panels.get(k-1);
         JLabel itLabel = labels.get(k-1);
-        if(k!=7){
+        if(k!=6){
         itLabel.setText("It = "+k);
         }else{
             itLabel.setText("K Recomendado");
