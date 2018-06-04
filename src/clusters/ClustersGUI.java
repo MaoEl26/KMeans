@@ -26,8 +26,7 @@ public class ClustersGUI extends javax.swing.JFrame {
      */
     
     private static ArrayList<Points> NPoints;
-    private Random Rand = new Random();
-    private ResultK resultado;
+    private final Random Rand = new Random();
     private int valK,valN,valKRecomendado;
     private ResultK result;
     private ArrayList<JPanel> panels;
@@ -36,8 +35,8 @@ public class ClustersGUI extends javax.swing.JFrame {
     
     public ClustersGUI() {
         initComponents();
-        disableButtons();
         storePanels();
+        disableButtons();
     }
 
     /**
@@ -70,6 +69,7 @@ public class ClustersGUI extends javax.swing.JFrame {
         labelIt4 = new javax.swing.JLabel();
         iteracion5 = new javax.swing.JPanel();
         labelIt5 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Clustering");
@@ -202,7 +202,7 @@ public class ClustersGUI extends javax.swing.JFrame {
         iteracion1Layout.setHorizontalGroup(
             iteracion1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, iteracion1Layout.createSequentialGroup()
-                .addContainerGap(188, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(labelIt1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -222,7 +222,7 @@ public class ClustersGUI extends javax.swing.JFrame {
         iteracion4Layout.setHorizontalGroup(
             iteracion4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, iteracion4Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(188, Short.MAX_VALUE)
                 .addComponent(labelIt4, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -254,10 +254,38 @@ public class ClustersGUI extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jLabel1.setFont(new java.awt.Font("Elephant", 3, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(102, 102, 0));
+        jLabel1.setText("Clustering: Algoritmo KMeans");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(Generar)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(iteracion4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(iteracion1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(iteracion5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(iteracion2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(iteracion6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(iteracion3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(68, 68, 68)
+                        .addComponent(RunButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 94, Short.MAX_VALUE)
+                        .addComponent(ValidateButton)
+                        .addGap(37, 37, 37))))
             .addGroup(layout.createSequentialGroup()
                 .addGap(31, 31, 31)
                 .addComponent(labelValorK)
@@ -267,38 +295,22 @@ public class ClustersGUI extends javax.swing.JFrame {
                 .addComponent(labelValorN)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(textValorN, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(120, 120, 120)
+                .addGap(103, 103, 103)
                 .addComponent(labelKRecomendado)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(textValorKRecomendado, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(iteracion1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(iteracion4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(iteracion5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(iteracion2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(iteracion6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(iteracion3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(Generar)
-                .addGap(91, 91, 91)
-                .addComponent(RunButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
-                .addComponent(ValidateButton)
-                .addGap(37, 37, 37))
+                .addGap(38, 38, 38))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(63, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 638, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(48, 48, 48))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(22, 22, 22)
+                .addGap(14, 14, 14)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelValorK, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(textValorK, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -320,8 +332,7 @@ public class ClustersGUI extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ValidateButton)
                     .addComponent(RunButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(Generar))
-                .addContainerGap())
+                    .addComponent(Generar)))
         );
 
         pack();
@@ -338,39 +349,128 @@ public class ClustersGUI extends javax.swing.JFrame {
             DrawClusters(k);
             }
         }else{
-            JOptionPane.showMessageDialog(null,"Error de Valor N\nEl número debe de ser "
+            JOptionPane.showMessageDialog(null,"Error de Valor K\nEl número debe de ser "
                     + "menor o igual a 5","Error",JOptionPane.WARNING_MESSAGE);
-            disableButtons();
         }}catch(Exception e){
                 JOptionPane.showMessageDialog(null,"Error de Tipo o Casilla en blanco"
                         + " \nSolo valores enteros son permitidos","Error",JOptionPane.ERROR_MESSAGE);
-                disableButtons();
                 }
         
         
     }//GEN-LAST:event_RunButtonActionPerformed
 
     private void ValidateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ValidateButtonActionPerformed
-        
+        ArrayList<ArrayList<Double>> DB = new ArrayList<>();
+        Double valorAuxiliar;
+        for(int i = 2; i<=5;i++){
+            K_means_Algorithm algoritmo= new K_means_Algorithm();
+            for(int k = 1;k <= i;k++){
+            result = algoritmo.calcular(NPoints, i);
+            }
+            ArrayList<Double> EuDistance = new ArrayList<>();
+            for (Clusters cluster : result.getClusters()) {
+                Double ofv = 0d;
+                for (Points punto : cluster.getPuntos()) {
+                    ofv += punto.distanciaEuclideana(cluster.getCentroide());
+                }
+                EuDistance.add(ofv);
+            }
+            ArrayList<Double> R = new ArrayList<>() ;
+            for(int ind = 0; ind<EuDistance.size()-1;ind++){
+                double val1 = EuDistance.get(ind);
+                double val2 = EuDistance.get(ind+1);
+                if((val1!=0.0)){
+                        Double resultado = (val1+val2)/
+                                    (val1-val2);
+                        R.add(resultado); 
+                }else{
+                    if(val2!=0.0){
+                        Double resultado = (val1+val2)/
+                                    (val1-val2);
+                        R.add(resultado); 
+                }
+                } 
+            }
+            Double val=0d;
+            ArrayList<Double> D = new ArrayList<>();
+            if (R.size()> 1){
+                System.out.println("R");
+                for(int ind = 0;ind < R.size()-1;ind++ ){
+                    Double valAux = 0d;
+                    valAux = Double.max(R.get(ind), R.get(ind+1));
+                    val = Double.max(val, valAux);
+                }
+                System.out.println("R close");
+            }else{
+                val = R.get(0);
+            }
+            D.add(val);
+            val =0d; 
+            for(int ind=0;ind<D.size();ind++){
+                val+=D.get(ind);
+            }
+            ArrayList<Double> aux = new ArrayList<>();
+            valorAuxiliar=0.0;
+            if(i==2){
+                valorAuxiliar = 0.5;
+            }
+            if(i==3){
+                valorAuxiliar = 0.33333;
+            }
+            if(i==4){
+                valorAuxiliar = 0.25;
+            }
+            if(i==5){
+                valorAuxiliar = 0.2;
+            }
+            aux.add(val*valorAuxiliar);
+            aux.add(i+0.0);
+            DB.add(aux);
+        }
+        double val=Double.POSITIVE_INFINITY;
+        Double auxK = 0d;
+        for(int ind = 0;ind < DB.size()-1;ind++ ){
+            double valAux;
+            double aux;
+            double val1 = DB.get(ind).get(0);
+            double val2 = DB.get(ind+1).get(0);
+            valAux = Double.min(val1, val2);
+            if (valAux == val1){
+                aux = DB.get(ind).get(1);
+            }else{
+                aux = DB.get(ind+1).get(1);
+            }
+            val = Double.min(val, valAux);
+            if (valAux == val){
+                auxK = aux;
+            }
+        }
+        valKRecomendado = auxK.intValue();
+        textValorKRecomendado.setText(Integer.toString(valKRecomendado));
+        K_means_Algorithm algoritmo= new K_means_Algorithm();
+            for(int k = 1;k <= valK;k++){
+            result = algoritmo.calcular(NPoints, valKRecomendado);
+            }
+        DrawClusters(6);
     }//GEN-LAST:event_ValidateButtonActionPerformed
 
     private void GenerarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GenerarActionPerformed
-       try{
-        valN = Integer.parseInt(textValorN.getText());
-        if (valN >= 5){
-            generarNPoints(valN);
-            enableButtons();
-        }else{
-            JOptionPane.showMessageDialog(null,"Error de Valor N\nEl número debe de ser "
-                    + "mayor o igual a 5","Error",JOptionPane.WARNING_MESSAGE);
+        String valorN = textValorN.getText();
+        valN=0;
+        try{
+           valN = Integer.parseInt(valorN);
+           if (valN >= 5){
+               generarNPoints(valN);
+               enableButtons();
+           }else{
+               JOptionPane.showMessageDialog(null,"Error de Valor N\nEl número debe de ser "
+                        + "mayor o igual a 5","Error",JOptionPane.WARNING_MESSAGE);
+               disableButtons();
+        }}catch(Exception e){
+            JOptionPane.showMessageDialog(null,"Error de Tipo o Casilla en blanco"
+                    + "\nSolo valores enteros son permitidos","Error",JOptionPane.ERROR_MESSAGE);
             disableButtons();
-        }
-        }catch(Exception e){
-                JOptionPane.showMessageDialog(null,"Error de Tipo o Casilla en blanco"
-                        + " \nSolo valores enteros son permitidos","Error",JOptionPane.ERROR_MESSAGE);
-                disableButtons();
-                }
-                
+        }           
     }//GEN-LAST:event_GenerarActionPerformed
 
     private void generarNPoints(int valN){
@@ -396,7 +496,11 @@ public class ClustersGUI extends javax.swing.JFrame {
     private void DrawClusters(int k){
         JPanel iteracion = panels.get(k-1);
         JLabel itLabel = labels.get(k-1);
+        if(k!=7){
         itLabel.setText("It = "+k);
+        }else{
+            itLabel.setText("K Recomendado");
+        }
         iteracion.add(itLabel);
         iteracion.validate();
         iteracion.setLayout(new java.awt.BorderLayout());
@@ -436,11 +540,15 @@ public class ClustersGUI extends javax.swing.JFrame {
     private void disableButtons(){
         RunButton.setEnabled(false);
         ValidateButton.setEnabled(false);
+        textValorK.setText("");
+        textValorKRecomendado.setText("");
+        textValorK.setEditable(false);
     }
     
     private void enableButtons(){
         RunButton.setEnabled(true);
         ValidateButton.setEnabled(true);
+        textValorK.setEditable(true);
     }
     
     private void storePanels(){
@@ -506,6 +614,7 @@ public class ClustersGUI extends javax.swing.JFrame {
     private javax.swing.JPanel iteracion4;
     private javax.swing.JPanel iteracion5;
     private javax.swing.JPanel iteracion6;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel labelIt1;
     private javax.swing.JLabel labelIt2;
     private javax.swing.JLabel labelIt3;

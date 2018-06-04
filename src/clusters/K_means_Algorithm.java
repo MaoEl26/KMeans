@@ -25,7 +25,6 @@ public class K_means_Algorithm {
 	}
 
 	Double objFunc = FuncionObjetivo(clusters);
-
 	return new ResultK(clusters, objFunc);
     }
     
@@ -133,4 +132,6 @@ public class K_means_Algorithm {
 
 	return centroides;
     }
+    
+    
 }
